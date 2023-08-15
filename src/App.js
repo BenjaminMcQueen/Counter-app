@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Display from './components/Display';
+import DownButton from './components/buttons/DownButton';
+import UpButton from './components/buttons/UpButton';
+import ResetButton from './components/buttons/ResetButton'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  state = {
+    count: 69
+  };
+
+  goDown = state => {
+    this.setState({
+      count: this.state.count-1
+    })
+  };
+  goUp = state => {
+    this.setState({
+      count: this.state.count+1
+    })
+  };
+  reset = state => {
+    this.setState({
+      count: 0
+    })
+  };
+
+  render() {
+    this.goDown = this.goDown.bind(this);
+    return (
+      <div>
+        <Display count={this.state.count} />
+        <div className='button-array centered'>
+          <DownButton goDown={this.goDown} />
+          <UpButton goUp={this.goUp} />
+          <ResetButton reset={this.reset} />
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
