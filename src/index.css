@@ -1,4 +1,5 @@
 body {
+  background-color: aliceblue;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -16,10 +17,71 @@ code {
   text-align: center;
 }
 
+.wider {
+  padding: 5px;
+}
+
 .display {
   background-color: cornflowerblue;
 }
 
 .button-array{
   background-color: red;
+}
+
+.button-array button{
+  width: 30%;
+  height: 50px;
+  padding: 5px;
+  margin: 5px;
+  font-size: larger;
+}
+
+.setter{
+  background-color: greenyellow;
+}
+
+.setter input{
+  font-size: x-large;
+  margin: 5px;
+}
+
+.setter button{
+  font-size: x-large;
+  margin: 5px;
+}
+
+.app{
+  align-content: center;
+  width: 100%;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+}
+
+@media (max-height: 600px) {
+  .app{
+    margin-top: 10vh;
+  }
+}
+
+@media (max-height: 375px) {
+  .app{
+    margin-top: 5vh;
+  }
+}
+
+@media (max-height: 350px) {
+  .app{
+    margin-top: 0vh;
+  }
+}
+
+@media (max-width: 350px){
+  .setter input{
+    font-size: large;
+  }
+  
+  .setter button{
+    font-size: large;
+  }
 }

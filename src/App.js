@@ -2,39 +2,61 @@ import React, { Component } from 'react';
 import Display from './components/Display';
 import DownButton from './components/buttons/DownButton';
 import UpButton from './components/buttons/UpButton';
-import ResetButton from './components/buttons/ResetButton'
+import ResetButton from './components/buttons/ResetButton';
+import Setter from './components/Setter';
 
 export default class App extends Component {
   state = {
-    count: 69
+    count: 0,
+    timeDirection: "still"
   };
 
-  goDown = state => {
+  goDown = () => {
     this.setState({
-      count: this.state.count-1
-    })
+      count: this.state.count - 1
+    });
   };
-  goUp = state => {
+  goUp = () => {
     this.setState({
-      count: this.state.count+1
-    })
+      count: this.state.count + 1
+    });
   };
-  reset = state => {
+  reset = () => {
     this.setState({
       count: 0
-    })
+    });
   };
+  setValue = e => {
+    e.preventDefault();
+    this.setState({
+      count: e.target.newVal.value
+    })
+  }
 
   render() {
-    this.goDown = this.goDown.bind(this);
+    if (this.state.timeDirection === "up")
+    {
+      setTimeout(this.goUp, 1000);
+    }
+    else if (this.state.timeDirection === "down")
+    {
+      setTimeout(this.goDown, 1000);
+    }
+
     return (
-      <div>
+      <div className='app'>
         <Display count={this.state.count} />
-        <div className='button-array centered'>
+        <div className='button-array centered wider'>
           <DownButton goDown={this.goDown} />
-          <UpButton goUp={this.goUp} />
+          <UpButton goUp={this.goUp} /> <br/>
           <ResetButton reset={this.reset} />
         </div>
+        {/* <form className='setter centered wider' onSubmit={this.setValue}>
+          <input id='newVal' type='text' placeholder='input value here'></input>
+          <button>Set Count</button>
+        </form> */}
+        <Setter setValue={this.setValue} />
+        {/* <TimerManager startTimer={this.startTimer} remiTtrats={this.remiTtrats}/> */}
       </div>
     );
   }
